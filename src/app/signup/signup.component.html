@@ -1,0 +1,145 @@
+<form #f="ngForm" (ngSubmit)="submit(f)">
+  <div class="input-container">
+    <input
+      type="text"
+      [ngModel]="user?.firstName"
+      [ngClass]="{
+        error:
+          (firstNameRef.invalid && firstNameRef.touched) ||
+          (!firstNameRef.touched && f.submitted)
+      }"
+      name="firstName"
+      #firstNameRef="ngModel"
+      placeholder="First Name"
+      required
+    />
+    <i
+      class="icon"
+      *ngIf="
+        (firstNameRef.errors?.['required'] && firstNameRef.touched) ||
+        (!firstNameRef.touched && f.submitted)
+      "
+    ></i>
+    <p
+      class="error-message"
+      *ngIf="
+        (firstNameRef.errors?.['required'] && firstNameRef.touched) ||
+        (!firstNameRef.touched && f.submitted)
+      "
+    >
+      First Name cannot be empty
+    </p>
+  </div>
+  <div class="input-container">
+    <input
+      type="text"
+      [ngModel]="user?.lastName"
+      [ngClass]="{
+        error:
+          (lastNameRef.errors?.['required'] && lastNameRef.touched) ||
+          (!lastNameRef.touched && f.submitted)
+      }"
+      name="lastName"
+      #lastNameRef="ngModel"
+      placeholder="Last Name"
+      required
+    />
+    <i
+      class="icon"
+      *ngIf="
+        (lastNameRef.errors?.['required'] && lastNameRef.touched) ||
+        (!lastNameRef.touched && f.submitted)
+      "
+    ></i>
+    <p
+      class="error-message"
+      *ngIf="
+        (lastNameRef.invalid && lastNameRef.touched) ||
+        (!lastNameRef.touched && f.submitted)
+      "
+    >
+      Last Name cannot be empty
+    </p>
+  </div>
+  <div class="input-container">
+    <input
+      type="email"
+      pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$"
+      [ngModel]="user?.emailAddress"
+      [ngClass]="{
+        error:
+          (emailAddressRef.errors?.['required'] && emailAddressRef.touched) ||
+          (emailAddressRef.errors?.['pattern'] && emailAddressRef.touched) ||
+          (!emailAddressRef.touched && f.submitted)
+      }"
+      name="emailAddress"
+      #emailAddressRef="ngModel"
+      placeholder="Email Address"
+      required
+      [ngStyle]="{'color': !emailAddressRef.errors?.['required'] && emailAddressRef.errors?.['pattern'] && f.submitted ? 'hsl(0, 100%, 74%)' : 'hsl(249, 10%, 26%)' }"
+    />
+    <i
+      class="icon"
+      *ngIf="(emailAddressRef.errors?.['required'] && emailAddressRef.touched) ||
+      (emailAddressRef.errors?.['pattern'] && emailAddressRef.touched) ||
+      (!emailAddressRef.touched && f.submitted)"
+    ></i>
+    <p
+      class="error-message"
+      *ngIf="
+        ( emailAddressRef.errors?.['required'] && emailAddressRef.touched) ||
+        (!emailAddressRef.touched && f.submitted)
+      "
+    >
+      Email address cannot be empty
+    </p>
+    <p
+      class="error-message"
+      *ngIf="
+      emailAddressRef.touched &&
+      !emailAddressRef.errors?.['required'] &&
+      emailAddressRef.errors?.['pattern'] &&
+      f.submitted
+    "
+    >
+      Looks like this is not an email
+    </p>
+  </div>
+  <div class="input-container">
+    <input
+      type="text"
+      [ngModel]="user?.password"
+      [ngClass]="{
+        error:
+          (passwordRef.invalid && passwordRef.touched) ||
+          (!passwordRef.touched && f.submitted)
+      }"
+      name="password"
+      #passwordRef="ngModel"
+      placeholder="Password"
+      required
+    />
+    <i
+      class="icon"
+      *ngIf="
+        (passwordRef.invalid && passwordRef.touched) ||
+        (!passwordRef.touched && f.submitted)
+      "
+    ></i>
+    <p
+      class="error-message"
+      *ngIf="
+        (passwordRef.invalid && passwordRef.touched) ||
+        (!passwordRef.touched && f.submitted)
+      "
+    >
+      Password cannot be empty
+    </p>
+  </div>
+  <button class="trial-btn">Claim your free trial</button>
+  <p class="terms-and-condition">
+    By clicking the button, you are agreeing to <br />
+    our
+    <a href="#">Terms and Services</a>
+  </p>
+</form>

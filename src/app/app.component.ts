@@ -12,8 +12,8 @@ export class AppComponent {
 
   user: User | null = null
 
-  submitHandler(form: NgForm){
-    console.log(form.value);
+  submitHandler(user: User){
+    console.log(user);
   }
 
 }
