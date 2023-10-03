@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { User } from './model/user';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'intro-component-with-signup-form-master-angular';
+
+  user: User | null = null
+
+  submitHandler(form: NgForm){
+    console.log(form.value);
+  }
+
 }
