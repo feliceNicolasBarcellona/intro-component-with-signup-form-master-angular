@@ -12,8 +12,6 @@ export class SignupComponent {
    @Output() form = new EventEmitter<User>();
 
    submit(form: NgForm){
-    console.log(form.value, 'figlio');
-
     this.form.emit(form.value)
    }
 }
